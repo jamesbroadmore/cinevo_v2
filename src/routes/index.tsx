@@ -58,7 +58,7 @@ function Home() {
     <div className="public-home">
       <header className="public-nav">
         <Link to="/" className="public-brand" aria-label="CINEVO home">
-          <Logo size="md" />
+          <Logo size="xl" dynamic />
         </Link>
         <nav aria-label="Homepage">
           {NAV.map((item) =>
@@ -86,6 +86,7 @@ function Home() {
           <div className="public-hero__veil" />
           <div className="public-hero__orb" />
           <div className="public-hero__content">
+            <Logo size="3xl" dynamic className="public-hero__logo" />
             <span className="public-kicker">
               <i /> PRIVATE BY DESIGN
             </span>

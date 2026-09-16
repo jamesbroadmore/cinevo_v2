@@ -101,7 +101,7 @@ export function Shell({
         <div className="drawer-scrim md:hidden" onMouseDown={() => setDrawer(false)}>
           <aside className="drawer-panel" onMouseDown={(e) => e.stopPropagation()}>
             <div className="mb-6 flex items-center justify-between">
-              <Logo size="sm" />
+              <Logo size="lg" dynamic />
               <button type="button" aria-label="Close menu" className="top-nav__icon" onClick={() => setDrawer(false)}>
                 <X size={18} />
               </button>
