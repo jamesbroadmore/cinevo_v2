@@ -218,7 +218,7 @@
 .sidebar-mobile-bar button { display: grid; width: 2.2rem; height: 2.2rem; place-items: center; border: 0; border-radius: .5rem; color: inherit; background: transparent; }
 .sidebar-mobile-bar button:hover { background: var(--color-cine-surface); }
 @media (min-width: 761px) { .house-main { margin-left: 15.5rem; } .top-nav { left: calc(50% + 7.75rem); width: min(780px, calc(100% - 17.5rem)); } }
-@media (max-width: 760px) { .top-nav { display: none; } .house-main { padding-top: 3.7rem; } .house-main--page { padding-top: 8rem; } }
+@media (max-width: 760px) { .top-nav { display: none !important; } .house-main { padding-top: 3.7rem; } .house-main--page { padding-top: 8rem; } }
 
 @layer base {
   button:not(:disabled),
