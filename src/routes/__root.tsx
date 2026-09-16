@@ -42,6 +42,7 @@ export const Route = createRootRoute({
         <PreviewHostBridge />
         <ClerkProvider
           publishableKey={
+            import.meta.env.VITE_CLERK_PUBLISHABLE_KEY_2 ??
             import.meta.env.VITE_CLERK_PUBLISHABLE_KEY ??
             import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
           }
