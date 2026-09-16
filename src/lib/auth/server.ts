@@ -102,6 +102,11 @@ const LOCAL_DEV_ORIGINS: string[] = [
   "http://localhost:8080",
   "http://127.0.0.1:8080",
   "http://[::1]:8080",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://[::1]:3000",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
 ];
 const baseURL = explicitBaseURL ?? {
   // Include loopback hosts so dynamic baseURL resolves for local email/password
@@ -182,7 +187,23 @@ export const auth = betterAuth({
   // CSRF / origin check for credentialed auth POSTs (email sign-up/sign-in, …).
   // See `trustedOrigins` construction above — must cover live preview hosts AND
   // local loopback variants, or clients get "Invalid origin".
-  trustedOrigins,
+  trustedOrigins: async (request) => {
+    if (!request) return trustedOrigins;
+    const origin = request.headers.get("origin");
+    if (!origin) return trustedOrigins;
+    try {
+      const url = new URL(origin);
+      const isAllowedHost =
+        url.hostname === "localhost" ||
+        url.hostname === "127.0.0.1" ||
+        url.hostname === "[::1]" ||
+        url.hostname.endsWith(".grok-sandbox.com") ||
+        url.hostname.endsWith(".vercel.run");
+      return isAllowedHost ? [...trustedOrigins, origin] : trustedOrigins;
+    } catch {
+      return trustedOrigins;
+    }
+  },
 
   // Encrypt broker-issued OAuth tokens at rest, and treat the broker's upstreams
   // as trusted first-party identities. The broker owns identity and X emails are
